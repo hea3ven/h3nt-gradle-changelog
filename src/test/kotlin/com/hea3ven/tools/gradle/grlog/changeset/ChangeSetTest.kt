@@ -147,4 +147,20 @@ class ChangeSetTest {
 		assertEquals(Arrays.asList("b something"), change.getLines(testGroup))
 		assertEquals(Arrays.asList("Add something", "b something"), change.getLines(ChangeSetGroup.ALL))
 	}
+
+	@Test
+	fun linesGroupedCorrectlyGroupsLines() {
+		val change = ChangeSet()
+
+		change.addLine("Fix something")
+		change.addLine("Add something")
+		change.addLine("Rem something")
+		change.addLine("Do something")
+		change.addLine("Fix something 1")
+		change.addLine("Add something 1")
+
+		assertEquals(Arrays.asList("Add something", "Add something 1", "Rem something", "Fix something",
+				"Fix something 1", "Do something"), change.processedLines)
+
+	}
 }

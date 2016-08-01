@@ -1,6 +1,12 @@
 package com.hea3ven.tools.gradle.grlog.changeset
 
 class ChangeSet(val config: ChangeSetConfig = ChangeSetConfig()) {
+	val processedLines: List<String>
+		get() = getLines(ChangeSetGroup.ADD)
+				.plus(getLines(ChangeSetGroup.REM))
+				.plus(getLines(ChangeSetGroup.FIX))
+				.plus(getLines(ChangeSetGroup.EXT))
+
 	private val groupsMap = mutableMapOf(
 			ChangeSetGroup.ALL to LineGroup())
 
