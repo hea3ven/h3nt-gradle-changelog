@@ -1,0 +1,42 @@
+buildscript {
+	ext.kotlin_version = '1.0.3'
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+	}
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'maven'
+
+group = 'com.hea3ven.tools.gradle.grlog'
+version = '1.0.0'
+archivesBaseName = 'grlog'
+
+dependencies {
+	compile gradleApi()
+	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+	compile 'org.eclipse.jgit:org.eclipse.jgit:4.4.1.201607150455-r'
+
+	testCompile 'junit:junit:4.12'
+	testCompile 'org.eclipse.jgit:org.eclipse.jgit.junit:4.4.1.201607150455-r'
+}
+
+repositories {
+	mavenCentral()
+	maven {
+		name 'jgit'
+		url 'https://repo.eclipse.org/content/groups/releases/'
+	}
+}
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			repository(url: project.hasProperty('hea3venMvnUrl') ? project.hea3venMvnUrl : '')
+		}
+	}
+}
