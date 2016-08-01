@@ -1,5 +1,6 @@
 package com.hea3ven.tools.gradle.grlog
 
+import com.hea3ven.tools.gradle.grlog.changeset.ChangeSetGroup
 import org.eclipse.jgit.internal.storage.dfs.InMemoryRepository
 import org.eclipse.jgit.junit.TestRepository
 import org.junit.Assert.assertEquals
@@ -18,7 +19,7 @@ class GitChangelogExtractorTest {
 
 		val result = ex.getChangeSet()
 
-		assertEquals(Arrays.asList("A", "B", "C"), result.lines)
+		assertEquals(Arrays.asList("A", "B", "C"), result.getLines(ChangeSetGroup.ALL))
 	}
 
 	@Test
@@ -34,7 +35,7 @@ class GitChangelogExtractorTest {
 
 		val result = ex.getChangeSet()
 
-		assertEquals(Arrays.asList("C"), result.lines)
+		assertEquals(Arrays.asList("C"), result.getLines(ChangeSetGroup.ALL))
 	}
 
 	@Test
@@ -53,7 +54,7 @@ class GitChangelogExtractorTest {
 		ex.tagFilter = { it.startsWith("v") }
 		val result = ex.getChangeSet()
 
-		assertEquals(Arrays.asList("C", "D"), result.lines)
+		assertEquals(Arrays.asList("C", "D"), result.getLines(ChangeSetGroup.ALL))
 	}
 
 	@Test
@@ -88,6 +89,6 @@ class GitChangelogExtractorTest {
 		ex.tagFilter = { it.startsWith("v2-") }
 		val result = ex.getChangeSet()
 
-		assertEquals(Arrays.asList("D", "E", "F", "G"), result.lines)
+		assertEquals(Arrays.asList("D", "E", "F", "G"), result.getLines(ChangeSetGroup.ALL))
 	}
 }

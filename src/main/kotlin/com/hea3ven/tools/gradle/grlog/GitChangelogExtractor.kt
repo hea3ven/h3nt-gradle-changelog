@@ -1,5 +1,6 @@
 package com.hea3ven.tools.gradle.grlog
 
+import com.hea3ven.tools.gradle.grlog.changeset.ChangeSet
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.lib.Repository
 
@@ -14,7 +15,7 @@ class GitChangelogExtractor(val repo: Repository) {
 				.reversed()
 		val changeSet = ChangeSet()
 		for (commit in log) {
-			changeSet.addExtraLine(commit.fullMessage)
+			changeSet.addLine(commit.fullMessage)
 		}
 		return changeSet
 	}

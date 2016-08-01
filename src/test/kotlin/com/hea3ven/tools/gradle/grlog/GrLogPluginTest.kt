@@ -18,8 +18,8 @@ class GrLogPluginTest {
 		changelog.plainTextChangelog(
 				MethodClosure(Consumer<PlainTextChangelogHandler> { t -> t.file = "CHANGELOG" }, "accept"))
 		assertEquals(1, changelog.handlers.size)
-		assertTrue(changelog.handlers.get(0) is PlainTextChangelogHandler)
-		assertEquals("CHANGELOG", changelog.handlers.get(0).file)
+		assertTrue(changelog.handlers[0] is PlainTextChangelogHandler)
+		assertEquals("CHANGELOG", changelog.handlers[0].file)
 	}
 
 	@Suppress("UNCHECKED_CAST")
