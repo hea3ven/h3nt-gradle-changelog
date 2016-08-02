@@ -7,6 +7,5 @@ class ChangeSetGroup(val name: String) {
 		val REM = ChangeSetGroup("REM")
 		val FIX = ChangeSetGroup("FIX")
 		val EXT = ChangeSetGroup("EXT")
-		val ALL_GROUPED = ChangeSetGroup("ALL_GROUPED")
 	}
 }
