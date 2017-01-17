@@ -14,15 +14,17 @@ apply plugin: 'maven'
 
 group = 'com.hea3ven.tools.gradle.grlog'
 version = '1.0.0'
-archivesBaseName = 'grlog'
+archivesBaseName = 'h3nt-gradle-grlog'
 
 dependencies {
 	compile gradleApi()
 	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 	compile 'org.eclipse.jgit:org.eclipse.jgit:4.4.1.201607150455-r'
+	compile 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
 
 	testCompile 'junit:junit:4.12'
 	testCompile 'org.eclipse.jgit:org.eclipse.jgit.junit:4.4.1.201607150455-r'
+	testCompile 'com.nhaarman:mockito-kotlin:1.0.0'
 }
 
 repositories {
@@ -30,6 +32,10 @@ repositories {
 	maven {
 		name 'jgit'
 		url 'https://repo.eclipse.org/content/groups/releases/'
+	}
+	maven {
+		name = "forge"
+		url = "http://files.minecraftforge.net/maven"
 	}
 }
 

@@ -1,15 +1,14 @@
 package com.hea3ven.tools.gradle.grlog.handlers
 
 import com.hea3ven.tools.gradle.grlog.changeset.ChangeSet
+import org.gradle.api.Project
 import java.io.File
 
-class PlainTextChangelogHandler {
-	var file: String = ""
+class PlainTextChangelogHandler : ChangelogHandler() {
 
 	private var append = true
 
 	var versionFormat: String = "%s:"
-	var lineFormat: String = "    %s"
 
 	fun append() {
 		append = true
@@ -19,8 +18,8 @@ class PlainTextChangelogHandler {
 		append = false
 	}
 
-	fun writeChangeset(version: String, change: ChangeSet) {
-		var text = versionFormat.format(version) + "\n"
+	override fun writeChangeset(project: Project, change: ChangeSet) {
+		var text = versionFormat.format(project.version) + "\n"
 		text += change.processedLines.map { lineFormat.format(it) }.joinToString("\n")
 		text += "\n"
 		val outputFile = File(file)
@@ -33,3 +32,4 @@ class PlainTextChangelogHandler {
 	}
 
 }
+
