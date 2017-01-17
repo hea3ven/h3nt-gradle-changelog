@@ -1,4 +1,7 @@
 .*
 /build
-
-/bin/
+/bin
+/classes
+/eclipse
+*.iml
+*.launch
